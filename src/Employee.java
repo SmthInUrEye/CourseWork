@@ -12,7 +12,7 @@ public class Employee {
         this.department = department;
         this.name = name;
         id = COUNTER.getAndIncrement ();
-        ;
+
     }
 
     public double getSalary() {
