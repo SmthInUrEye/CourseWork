@@ -176,22 +176,33 @@ public class Main {
         employee[8] = new Employee ( "Талайбек Джайдахалиевич", 15000.00, 4 );
         employee[9] = new Employee ( "Артур Богданович", 90000.00, 5 );
 
+        //Вывести таблицу сотрудников
         printInfo ( employee );
+
         System.out.println ( "\nМесячные затраты на зарплату: " + getMonthlyCosts ( employee ) );
         System.out.println ( "Минимальная зарпалата у сотрудника " + employee[findMinWageEmployeeId ( employee )].getName () + " в размере " + employee[findMinWageEmployeeId ( employee )].getSalary () );
         System.out.println ( "Максимальная зарпалата у сотрудника " + employee[findMaxWageEmployeeId ( employee )].getName () + " в размере " + employee[findMaxWageEmployeeId ( employee )].getSalary () );
         System.out.println ( "Средняя зарплата сотрудников: " + getAverageSalary ( employee ) );
+
         printNames ( employee );
+
         getIndexedSalary ( employee, 5.2 );
+
         int department = 2;
         System.out.println ( "Минимальная зарпалата у сотрудника отдела " + department + " - " + employee[findMinWageDepartmentEmployeeId ( employee, department )].getName () + " в размере " + employee[findMinWageDepartmentEmployeeId ( employee, department )].getSalary () );
         System.out.println ( "Максимальная зарпалата у сотрудника отдела " + department + " - " + employee[findMaxWageDepartmentEmployeeId ( employee, department )].getName () + " в размере " + employee[findMaxWageDepartmentEmployeeId ( employee, department )].getSalary () );
+
         printDepartmentInfo ( employee, department );
+
         System.out.println ( "Месячные затраты на зарплату отдела № " + department + " - " + getMonthlyDepartmentCosts ( employee, department ) );
         System.out.println ( "Средняя зарплата сотрудников отдела № " + department + " - " + getAverageDepartmentCosts ( employee, department ) );
+
         getIndexedDepartmentSalary ( employee, department, 1.4 );
+
+        //Найти всех сотрудников с ЗП меньше/больше указанной
         findEmployeesWithSmallerSalary ( employee, 50000 );
         findEmployeesWithBiggerSalary ( employee, 50000 );
+
     }
 }
 
