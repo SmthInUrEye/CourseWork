@@ -1,58 +1,58 @@
 public class Main {
 
-    public static void printInfo(Employee[] employees) {
+    public static Employee[] employee = new Employee[10];
+
+    public static void printInfo() {
         System.out.printf ( "%-5s%-25s%-15s%-5s%n", "№", "Name", "Salary", "Department" );
-        for (int i = 0; i < employees.length; i++) {
-            System.out.printf ( "%-5s", employees[i].getId () );
-            System.out.printf ( "%-25s", employees[i].getName () );
-            System.out.printf ( "%-15s", employees[i].getSalary () );
-            System.out.printf ( "%-5s", employees[i].getDepartment () );
+        for (Employee value : employee) {
+            System.out.printf ( "%-5s", value.getId () );
+            System.out.printf ( "%-25s", value.getName () );
+            System.out.printf ( "%-15s", value.getSalary () );
+            System.out.printf ( "%-5s", value.getDepartment () );
             System.out.println ();
         }
     }
 
-    public static double getMonthlyCosts(Employee[] employees) {
+    public static double getMonthlyCosts() {
         double monthlyCosts = 0.0;
-        for (int i = 0; i < employees.length; i++) {
-            monthlyCosts += employees[i].getSalary ();
+        for (Employee value : employee) {
+            monthlyCosts += value.getSalary ();
         }
         return monthlyCosts;
     }
 
-    public static int findMinWageEmployeeId(Employee[] employees) {
-        int MinWageId = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getSalary () < employees[MinWageId].getSalary () ) {
-                MinWageId = employees[i].getId () - 1;
+    public static int findMinWageEmployeeId() {
+        int minWageId = 0;
+        for (Employee value : employee)
+            if ( value.getSalary () < employee[minWageId].getSalary () ) {
+                minWageId = value.getId () - 1;
             }
+        return minWageId;
+    }
+
+    public static int findMaxWageEmployeeId() {
+        int maxWageId = 0;
+        for (Employee value : employee)
+            if ( value.getSalary () > employee[maxWageId].getSalary () ) {
+                maxWageId = value.getId () - 1;
+
         }
-        return MinWageId;
+        return maxWageId;
     }
 
-    public static int findMaxWageEmployeeId(Employee[] employees) {
-        int MaxWageId = 0;
-        for (Employee employee : employees) {
-            if ( employee.getSalary () > employees[MaxWageId].getSalary () ) {
-                MaxWageId = employee.getId () - 1;
-            }
-        }
-        return MaxWageId;
+    public static double getAverageSalary() {
+        return (getMonthlyCosts () / employee.length);
     }
 
-    public static double getAverageSalary(Employee[] employees) {
-        return (getMonthlyCosts ( employees ) / employees.length);
-    }
-
-    public static void printNames(Employee[] employees) {
+    public static void printNames() {
         System.out.println ( "Список сотрудников: " );
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println ( " - " + employees[i].getName () );
+        for (Employee value : employee) {
+            System.out.println ( " - " + value.getName () );
         }
     }
 
     public static void main(String[] args) {
 
-        Employee[] employee = new Employee[10];
         employee[0] = new Employee ( "Иван Петрович", 25000.00, 1 );
         employee[1] = new Employee ( "Петр Иванович", 50000.00, 1 );
         employee[2] = new Employee ( "Оксана Викторовна", 100000.00, 2 );
@@ -64,12 +64,12 @@ public class Main {
         employee[8] = new Employee ( "Талайбек Джайдахалиевич", 15000.00, 4 );
         employee[9] = new Employee ( "Артур Богданович", 90000.00, 5 );
 
-        printInfo ( employee );
-        System.out.println ( "\nМесячные затраты на зарплату: " + getMonthlyCosts ( employee ) );
-        System.out.println ( "Минимальная зарпалата у сотрудника " + employee[findMinWageEmployeeId ( employee )].getName () + " в размере " + employee[findMinWageEmployeeId ( employee )].getSalary () );
-        System.out.println ( "Максимальная зарпалата у сотрудника " + employee[findMaxWageEmployeeId ( employee )].getName () + " в размере " + employee[findMaxWageEmployeeId ( employee )].getSalary () );
-        System.out.println ( "Средняя зарплата сотрудников: " + getAverageSalary ( employee ) );
-        printNames ( employee );
+        printInfo ();
+        System.out.println ( "\nМесячные затраты на зарплату: " + getMonthlyCosts () );
+        System.out.println ( "Минимальная зарпалата у сотрудника " + employee[findMinWageEmployeeId ()].getName () + " в размере " + employee[findMinWageEmployeeId ()].getSalary () );
+        System.out.println ( "Максимальная зарпалата у сотрудника " + employee[findMaxWageEmployeeId ()].getName () + " в размере " + employee[findMaxWageEmployeeId ()].getSalary () );
+        System.out.println ( "Средняя зарплата сотрудников: " + getAverageSalary () );
+        printNames ();
 
     }
 }

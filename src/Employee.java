@@ -1,20 +1,21 @@
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Employee {
-    private static final AtomicInteger COUNTER = new AtomicInteger ( 1 );
     private final int id;
     private final String name;
     private double salary;
     private int department;
+    public static int counter = 1;
 
     public Employee(String name, double salary, int department) {
         this.salary = salary;
         this.department = department;
         this.name = name;
-        id = COUNTER.getAndIncrement ();
-        ;
+        this.id = getCounter ();
+        counter++;
     }
 
+    public int getCounter() {
+        return counter;
+    }
     public double getSalary() {
         return salary;
     }
