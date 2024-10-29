@@ -126,7 +126,7 @@ public class EmployeeBook {
         return monthlyDepartmentCosts;
     }
 
-    public double getAverageDepartmentCosts( int department) {
+    public double getAverageDepartmentCosts(int department) {
         double averageDepartmentCosts = 0.0;
         int departmentHeadcount = 0;
         for (Employee value : employee) {
@@ -140,7 +140,7 @@ public class EmployeeBook {
         return averageDepartmentCosts;
     }
 
-    public void getIndexedDepartmentSalary( int department, double indexationPercentage) {
+    public void getIndexedDepartmentSalary(int department, double indexationPercentage) {
         for (Employee value : employee) {
             if ( value.getDepartment () == department ) {
                 value.setSalary ( value.getSalary () * indexationPercentage / 100 + value.getSalary () );
@@ -174,16 +174,16 @@ public class EmployeeBook {
 
     }
 
-    public void addEmployee( String EmployeeName, double EmployeeSalary, int EmployeeDepartment) {
+    public void addEmployee(String employeeName, double employeeSalary, int employeeDepartment) {
         for (int i = 0; i < employee.length; i++) {
             if ( employee[i] == null ) {
-                employee[i] = new Employee ( EmployeeName, EmployeeSalary, EmployeeDepartment );
+                employee[i] = new Employee ( employeeName, employeeSalary, employeeDepartment );
             }
         }
     }
 
-    public void deleteEmployee( int id) {
-        this.employee[id - 1] = null;
+    public void deleteEmployee(int id) {
+        employee[id - 1] = null;
         System.gc ();
     }
 
