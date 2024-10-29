@@ -4,7 +4,7 @@ public class Employee {
     private static final AtomicInteger COUNTER = new AtomicInteger ( 1 );
     private final int id;
     private final String name;
-    private double salary;
+    public double salary;
     private int department;
 
     public Employee(String name, double salary, int department) {
