@@ -161,7 +161,7 @@ public class EmployeeBook {
 
     }
 
-    public void findEmployeesWithBiggerSalary(Employee[] employee, double salary) {
+    public void findEmployeesWithBiggerSalary( double salary) {
         System.out.println ( "Список сотрудников с зарплатой больше " + salary );
         for (Employee value : employee) {
             if ( value.getSalary () > salary ) {
