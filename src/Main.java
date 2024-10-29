@@ -5,14 +5,14 @@ public class Main {
         EmployeeBook book = new EmployeeBook ();
 
         book.getInit ();
-        book.printInfo ( book.employee );
+        book.printInfo ();
         System.out.println ("----------------------------------------------------");
 
-        book.deleteEmployee ( book.employee, 6 );
-        book.addEmployee ( book.employee, "Влад Салтыков", 150000, 5 );
+        book.deleteEmployee ( 6 );
+        book.addEmployee ( "Влад Салтыков", 150000, 5 );
 
-        book.getEmployeeById ( book.employee, 6); //Это будет null (можно ли исправить не изменяя модификатор доступа к полю класса Employee - id ???
-        book.getEmployeeById ( book.employee, 11 );
+        book.getEmployeeById ( 6); //Это будет null (можно ли исправить не изменяя модификатор доступа к полю класса Employee - id ???
+        book.getEmployeeById ( 11 );
 
     }
 }

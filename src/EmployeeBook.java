@@ -1,7 +1,6 @@
 public class EmployeeBook {
 
     Employee[] employee = new Employee[10];
-    int[] freeIds = new int[10];
 
     public void getInit() {
         this.employee[0] = new Employee ( "Иван Петрович", 25000.00, 1 );
@@ -16,184 +15,182 @@ public class EmployeeBook {
         this.employee[9] = new Employee ( "Артур Богданович", 90000.00, 5 );
     }
 
-    public void printInfo(Employee[] employees) {
+    public void printInfo() {
         System.out.printf ( "%-5s%-25s%-15s%-5s%n", "№", "Name", "Salary", "Department" );
-        for (int i = 0; i < employees.length; i++) {
-            System.out.printf ( "%-5s", employees[i].getId () );
-            System.out.printf ( "%-25s", employees[i].getName () );
-            System.out.printf ( "%-15s", employees[i].getSalary () );
-            System.out.printf ( "%-5s", employees[i].getDepartment () );
+        for (Employee value : employee) {
+            System.out.printf ( "%-5s", value.getId () );
+            System.out.printf ( "%-25s", value.getName () );
+            System.out.printf ( "%-15s", value.getSalary () );
+            System.out.printf ( "%-5s", value.getDepartment () );
             System.out.println ();
         }
     }
 
-    public double getMonthlyCosts(Employee[] employees) {
+    public double getMonthlyCosts() {
         double monthlyCosts = 0.0;
-        for (int i = 0; i < employees.length; i++) {
-            monthlyCosts += employees[i].getSalary ();
+        for (Employee value : employee) {
+            monthlyCosts += value.getSalary ();
         }
         return monthlyCosts;
     }
 
-    public int findMinWageEmployeeId(Employee[] employees) {
-        int MinWageId = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getSalary () < employees[MinWageId].getSalary () ) {
-                MinWageId = employees[i].getId () - 1;
+    public int findMinWageEmployeeId() {
+        int minWageId = 0;
+        for (Employee value : employee) {
+            if ( value.getSalary () < employee[minWageId].getSalary () ) {
+                minWageId = value.getId () - 1;
             }
         }
-        return MinWageId;
+        return minWageId;
     }
 
-    public int findMaxWageEmployeeId(Employee[] employees) {
-        int MaxWageId = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getSalary () > employees[MaxWageId].getSalary () ) {
-                MaxWageId = employees[i].getId () - 1;
+    public int findMaxWageEmployeeId() {
+        int maxWageId = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if ( employee[i].getSalary () > employee[maxWageId].getSalary () ) {
+                maxWageId = employee[i].getId () - 1;
             }
         }
-        return MaxWageId;
+        return maxWageId;
     }
 
-    public double getAverageSalary(Employee[] employees) {
-        return (getMonthlyCosts ( employees ) / employees.length);
+    public double getAverageSalary() {
+        return (getMonthlyCosts () / employee.length);
     }
 
-    public void printNames(Employee[] employees) {
+    public void printNames() {
         System.out.println ( "Список сотрудников: " );
-        for (int i = 0; i < employees.length; i++) {
-            System.out.println ( " - " + employees[i].getName () );
+        for (Employee value : employee) {
+            System.out.println ( " - " + value.getName () );
         }
     }
 
-    public void getIndexedSalary(Employee[] employees, double indexationPercentage) {
-        for (int i = 0; i < employees.length; i++) {
-            employees[i].setSalary ( employees[i].getSalary () * indexationPercentage / 100 + employees[i].getSalary () );
+    public void getIndexedSalary(double indexationPercentage) {
+        for (Employee value : employee) {
+            value.setSalary ( value.getSalary () * indexationPercentage / 100 + value.getSalary () );
         }
     }
 
-    public void printDepartmentInfo(Employee[] employees, int department) {
+    public void printDepartmentInfo(int department) {
         System.out.println ( "Список сотрудников отдела № " + department );
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                System.out.println ( employees[i].getId () + " " + employees[i].getName () + " " + employees[i].getSalary () );
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                System.out.println ( value.getId () + " " + value.getName () + " " + value.getSalary () );
             }
         }
     }
 
-    public int findMinWageDepartmentEmployeeId(Employee[] employees, int department) {
-        int MinWageDepartmentId = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                MinWageDepartmentId = employees[i].getId () - 1;
+    public int findMinWageDepartmentEmployeeId(int department) {
+        int minWageDepartmentId = 0;
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                minWageDepartmentId = value.getId () - 1;
                 break;
             }
         }
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                if ( employees[i].getSalary () < employees[MinWageDepartmentId].getSalary () ) {
-                    MinWageDepartmentId = employees[i].getId () - 1;
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                if ( value.getSalary () < employee[minWageDepartmentId].getSalary () ) {
+                    minWageDepartmentId = value.getId () - 1;
                 }
             }
         }
-        return MinWageDepartmentId;
+        return minWageDepartmentId;
     }
 
-    public int findMaxWageDepartmentEmployeeId(Employee[] employees, int department) {
-        int MaxWageDepartmentId = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                MaxWageDepartmentId = employees[i].getId () - 1;
+    public int findMaxWageDepartmentEmployeeId(int department) {
+        int maxWageDepartmentId = 0;
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                maxWageDepartmentId = value.getId () - 1;
                 break;
             }
         }
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                if ( employees[i].getSalary () > employees[MaxWageDepartmentId].getSalary () ) {
-                    MaxWageDepartmentId = employees[i].getId () - 1;
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                if ( value.getSalary () > employee[maxWageDepartmentId].getSalary () ) {
+                    maxWageDepartmentId = value.getId () - 1;
                 }
             }
         }
-        return MaxWageDepartmentId;
+        return maxWageDepartmentId;
     }
 
-    public double getMonthlyDepartmentCosts(Employee[] employees, int department) {
+    public double getMonthlyDepartmentCosts(int department) {
         double monthlyDepartmentCosts = 0.0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                monthlyDepartmentCosts += employees[i].getSalary ();
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                monthlyDepartmentCosts += value.getSalary ();
             }
         }
         return monthlyDepartmentCosts;
     }
 
-    public double getAverageDepartmentCosts(Employee[] employees, int department) {
+    public double getAverageDepartmentCosts( int department) {
         double averageDepartmentCosts = 0.0;
         int departmentHeadcount = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
                 departmentHeadcount++;
             }
         }
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                averageDepartmentCosts = getMonthlyDepartmentCosts ( employees, department ) / departmentHeadcount;
-            }
-        }
+        for (Employee value : employee)
+            if ( value.getDepartment () == department )
+                averageDepartmentCosts = getMonthlyDepartmentCosts ( department ) / departmentHeadcount;
         return averageDepartmentCosts;
     }
 
-    public void getIndexedDepartmentSalary(Employee[] employees, int department, double indexationPercentage) {
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getDepartment () == department ) {
-                employees[i].setSalary ( employees[i].getSalary () * indexationPercentage / 100 + employees[i].getSalary () );
+    public void getIndexedDepartmentSalary( int department, double indexationPercentage) {
+        for (Employee value : employee) {
+            if ( value.getDepartment () == department ) {
+                value.setSalary ( value.getSalary () * indexationPercentage / 100 + value.getSalary () );
             }
         }
     }
 
-    public void findEmployeesWithSmallerSalary(Employee[] employees, double salary) {
+    public void findEmployeesWithSmallerSalary(double salary) {
         System.out.println ( "Список сотрудников с зарплатой меньше " + salary );
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getSalary () < salary ) {
-                System.out.printf ( "%-5s", employees[i].getId () );
-                System.out.printf ( "%-25s", employees[i].getName () );
-                System.out.printf ( "%-15s", employees[i].getSalary () );
+        for (Employee value : employee) {
+            if ( value.getSalary () < salary ) {
+                System.out.printf ( "%-5s", value.getId () );
+                System.out.printf ( "%-25s", value.getName () );
+                System.out.printf ( "%-15s", value.getSalary () );
                 System.out.println ();
             }
         }
 
     }
 
-    public void findEmployeesWithBiggerSalary(Employee[] employees, double salary) {
+    public void findEmployeesWithBiggerSalary(Employee[] employee, double salary) {
         System.out.println ( "Список сотрудников с зарплатой больше " + salary );
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i].getSalary () > salary ) {
-                System.out.printf ( "%-5s", employees[i].getId () );
-                System.out.printf ( "%-25s", employees[i].getName () );
-                System.out.printf ( "%-15s", employees[i].getSalary () );
+        for (Employee value : employee) {
+            if ( value.getSalary () > salary ) {
+                System.out.printf ( "%-5s", value.getId () );
+                System.out.printf ( "%-25s", value.getName () );
+                System.out.printf ( "%-15s", value.getSalary () );
                 System.out.println ();
             }
         }
 
     }
 
-    public void addEmployee(Employee[] employees, String EmployeeName, double EmployeeSalary, int EmployeeDepartment) {
-        for (int i = 0; i < employees.length; i++) {
-            if ( employees[i] == null ) {
-                employees[i] = new Employee ( EmployeeName, EmployeeSalary, EmployeeDepartment );
+    public void addEmployee( String EmployeeName, double EmployeeSalary, int EmployeeDepartment) {
+        for (int i = 0; i < employee.length; i++) {
+            if ( employee[i] == null ) {
+                employee[i] = new Employee ( EmployeeName, EmployeeSalary, EmployeeDepartment );
             }
         }
     }
 
-    public void deleteEmployee(Employee[] employees, int id) {
-        employee[id - 1] = null;
+    public void deleteEmployee( int id) {
+        this.employee[id - 1] = null;
         System.gc ();
     }
 
-    public void getEmployeeById(Employee[] employees, int id) {
-        for (int i = 0; i < employees.length; i++) {
-            if ( id == employees[i].getId () ) {
-                System.out.println ( employees[i] );
+    public void getEmployeeById(int id) {
+        for (Employee value : employee) {
+            if ( id == value.getId () ) {
+                System.out.println ( value );
             }
 
         }
